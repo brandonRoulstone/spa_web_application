@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import LandingPage from '@/components/LandingPage.vue'
+import LandingPage from '@/components/LandingComp.vue'
 
 export default {
   name: 'HomeView',

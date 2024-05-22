@@ -20,9 +20,12 @@ export default createStore({
   actions: {
     async sharenetData({commit}){
       // this action allow me to destructure the data in api and grab the desired array "spots" when i commit my data to my state :)
-      const { data } = await axios.get("https://api.sharenet.co.za/api/v1/px2/spots");
-      commit('accessAction', data.spots);
-      // console.log(data.spots);
+      try{
+        const { data } = await axios.get("https://api.sharenet.co.za/api/v1/px2/spots");
+        commit('accessAction', data.spots);
+      } catch(error){
+        console.error(error)
+      }
     },
     async sNetData({commit}){
       // this action allow me to destructure the data in api and grab the desired array "spots" when i commit my data to my state :)
