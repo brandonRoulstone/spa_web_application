@@ -1,9 +1,8 @@
 <template>
   <div class="main">
-    <div class="table-settings pt-2">
+    <div class="table-settings">
       <button class="btn" @click="sortAlphabetically()">Sort A-Z</button>
       <button class="btn" @click="sortByPrice()">Sort by price</button>
-      <button class="btn" @click="getLatest()">Sort by time</button>
     </div>
 
     <table class="table">
@@ -17,7 +16,7 @@
 
 
       <!-- binding key to a unique identifier in each object in the array -->
-      <tr class="table-data" v-for="data in currency || sortByPrice() || sortAlphabetically() || getLatest()" v-bind:key="data.tickerId">
+      <tr class="table-data" v-for="data in currency || sortByPrice() || sortAlphabetically()" v-bind:key="data.tickerId">
         <td>{{ data.fullName }}</td>
         <td>{{ data.price }}</td>
         <td>
@@ -33,7 +32,7 @@
             </svg>
           </span>
         </td>
-        <td>{{ data.datetime }}</td>
+        <td class="topFive">{{ data.datetime }}</td>
       </tr>
       
     </table>
@@ -47,9 +46,11 @@ import { toast } from "vue3-toastify";
 export default {
 
   name: 'LandingPage',
+
   props: {
-    // store current data of api in the prop object
-    currency: Object
+    // store current data of api in a function 
+    // prop so i am able to loop inside my function on this prop
+    currency: Function
   },
   
   methods: {
@@ -65,10 +66,12 @@ export default {
       data.sort((a, b) => {
         return b.price - a.price
       });
+
       toast("Successfully sorted table prices", {
         type: 'success',
         position: "top-center"
       });
+
     },
     
     sortAlphabetically(){
@@ -83,31 +86,18 @@ export default {
           return 1;
         }
         return 0;
+
       });
+
       toast("Successfully sorted table names", {
         type: 'success',
         position: "top-center"
       });
+      
     },
 
     formatDate(date) {
       return date.toLocaleString();
-    },
-
-    getLatest(){
-      
-      let data = this.$store.state.tableData;
-
-      data.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
-
-      // Get the first five dates
-      const latestFiveDates = data.slice(0, 5);
-
-      // Format the dates
-      const formattedDates = latestFiveDates.map(date => this.formatDate(new Date(date.datetime)));
-
-      return formattedDates;
-
     }
 
   },
@@ -126,7 +116,7 @@ export default {
     align-items: center;
     flex-flow: column;
     min-height: 100vh;
-    background-color: rgb(239, 237, 237);
+    background-color: rgb(255, 255, 255);
     padding-bottom: 2rem;
   }
 
@@ -151,7 +141,7 @@ export default {
   }
 
   .table{
-    background-color: rgb(237, 237, 231);
+    background-color: rgb(255, 255, 255);
     border-radius: 5px;
     box-shadow: .5px .5px 10px .5px rgba(42, 41, 41, 0.197);
     color: rgb(17, 17, 17);
@@ -223,8 +213,8 @@ export default {
       font-size: .5rem;
     }
     .table-data td{
-    padding-left: .3rem;
-    padding-right: .3rem;
-  }
+      padding-left: .3rem;
+      padding-right: .3rem;
+    }
   }
 </style>

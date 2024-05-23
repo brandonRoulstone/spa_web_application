@@ -14,6 +14,6 @@ export default {
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        background-color: rgb(239, 237, 237);
+        background-color: rgb(255, 255, 255);
     }
 </style>

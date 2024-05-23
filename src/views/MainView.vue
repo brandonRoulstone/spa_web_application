@@ -1,7 +1,7 @@
 <template>
   <section class="home" id="home">
     <!-- table data  -->
-    <LandingPage :currency="$store.state.tableData"/>
+    <LandingPage :currency="latestData()"/>
 
   </section>
   
@@ -27,11 +27,25 @@ import ContactView from './ContactView.vue';
 
 export default {
   name: 'HomeView',
+  
   components: {
     LandingPage,
     ReservationView,
     ContactView
+  },
+
+  methods: {
+    latestData() {
+      let data = [...this.$store.state.tableData];
+      data.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
+      return data.slice(0, 5);
+    }
+  },
+
+  mounted(){
+    this.latestData()
   }
+
 }
 </script>
 <style scoped>

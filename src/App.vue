@@ -1,4 +1,3 @@
-import { default } from './components/NavbarComp.vue';
 <template>
 
   <header>
@@ -7,7 +6,7 @@ import { default } from './components/NavbarComp.vue';
 
   </header>
 
-  <main class="pt-4">
+  <main>
 
     <router-view />
 

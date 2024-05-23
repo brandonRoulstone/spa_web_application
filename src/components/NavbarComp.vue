@@ -17,7 +17,7 @@ export default {
 </script>
 <style scoped>
     .nav {
-        background-color: rgb(231, 227, 227);
+        background-color: rgb(245, 245, 245);
         position: fixed;
         width: 100%;
         top: 0;
