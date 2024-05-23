@@ -4,9 +4,9 @@
         Spa_Web_<span>Application</span>
     </div>
     <div class="nav-links">
-        <router-link to="/">Home</router-link>
-        <router-link to="/contact">Contact us</router-link>
-        <router-link to="/about">Reservation</router-link> 
+        <a href="#home">Home</a>
+        <a href="#contactUs">Contact us</a>
+        <a href="#reservation">Reservation</a> 
     </div>
   </nav>
 </template>
@@ -38,10 +38,11 @@ export default {
         left: 1.5%;
         justify-content: center;
         align-items: center;
+        font-size: 1.3rem;
     }
 
     .logo span {
-        color: blueviolet;
+        color: rgb(63, 85, 255);
     }
 
     .logo span::before {
@@ -49,14 +50,14 @@ export default {
         content: "";
         height: .6rem;
         width: .6rem;
-        background-color: blueviolet;
+        background-color: rgb(63, 85, 255);
         left: -9%;
         top: 42%;
         border-radius: 50%;
     }
 
     .nav a.router-link-exact-active {
-        color: blueviolet;
+        color: rgb(63, 85, 255);
     }
 
     .nav-links{

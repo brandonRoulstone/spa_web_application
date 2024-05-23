@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <div class="table-settings">
+    <div class="table-settings pt-2">
       <button class="btn" @click="sortAlphabetically()">Sort A-Z</button>
       <button class="btn" @click="sortByPrice()">Sort by price</button>
       <button class="btn" @click="getLatest()">Sort by time</button>
@@ -17,23 +17,25 @@
 
 
       <!-- binding key to a unique identifier in each object in the array -->
-      <tr class="table-data" v-for="data in $store.state.tableData || sortByPrice() || sortAlphabetically() || getLatest()" v-bind:key="data.tickerId">
+      <tr class="table-data" v-for="data in currency || sortByPrice() || sortAlphabetically() || getLatest()" v-bind:key="data.tickerId">
         <td>{{ data.fullName }}</td>
         <td>{{ data.price }}</td>
         <td>
           {{ data.pmove.toFixed(2) }} 
           <span v-if="data.pmove > 0" class="text-end">
-            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="rgb(58, 207, 9)" class="bi bi-arrow-up" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="rgb(58, 207, 9)" class="bi bi-arrow-up" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
-            </svg> +
-          </span> <span v-else>
-            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="red" class="bi bi-arrow-down" viewBox="0 0 16 16">
+            </svg>
+          </span> 
+          <span v-else>
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="red" class="bi bi-arrow-down" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
-            </svg> -
+            </svg>
           </span>
         </td>
         <td>{{ data.datetime }}</td>
       </tr>
+      
     </table>
 
   </div>
@@ -46,10 +48,8 @@ export default {
 
   name: 'LandingPage',
   props: {
-    fullName: String,
-    price: String,
-    pmove: String,
-    datetime: String
+    // store current data of api in the prop object
+    currency: Object
   },
   
   methods: {
@@ -104,7 +104,7 @@ export default {
       const latestFiveDates = data.slice(0, 5);
 
       // Format the dates
-      const formattedDates = latestFiveDates.map(entry => this.formatDate(new Date(entry.datetime)));
+      const formattedDates = latestFiveDates.map(date => this.formatDate(new Date(date.datetime)));
 
       return formattedDates;
 
@@ -126,6 +126,8 @@ export default {
     align-items: center;
     flex-flow: column;
     min-height: 100vh;
+    background-color: rgb(239, 237, 237);
+    padding-bottom: 2rem;
   }
 
   .table-settings{
@@ -135,36 +137,40 @@ export default {
     margin-bottom: .5rem;
     gap: 2rem;
     width: 90%;
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
   }
 
   .btn{
     border: none;
-    color: rgb(255, 255, 255);
-    border-radius: 2px;
+    color: rgb(12, 12, 12);
+    cursor: pointer;
+    border: 1px solid rgb(12, 12, 12);
+    border-radius: 10px;
     height: 2rem;
     width: 25%;
-    background-color: rgb(18, 18, 18);
+    background-color: rgba(28, 27, 27, 0);
   }
 
   .table{
-    background-color: #FAF9F6;
+    background-color: rgb(237, 237, 231);
+    border-radius: 5px;
+    box-shadow: .5px .5px 10px .5px rgba(42, 41, 41, 0.197);
     color: rgb(17, 17, 17);
     text-align: center;
     width: 75%;
-    max-height: 50vh;
-    overflow: scroll;
+    padding: 1rem 1rem 1rem 1rem;
   }
 
   .table-data:hover{
-    background-color: rgb(222, 222, 217);
+    background-color: rgb(12, 12, 12);
     cursor: pointer;
+    color: whitesmoke;
   }
+
   /* aligning data text under fullname col*/
   .table-data td:nth-child(1){
     text-align: start;
   }
+
   .table-data td{
     padding-top: .3rem;
     padding-bottom: .3rem;
@@ -191,14 +197,34 @@ export default {
   }
   .row-head td:nth-child(4){
     width: 25vw;
+    border-right: 0px;
   }
 
   @media (max-width: 768px) {
     * td{
       font-size: .6rem;
     }
+    
     .btn{
       font-size: .6rem;
     }
+
+    .table{
+      border-radius: 2px;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 325px) {
+    * td{
+      font-size: .5rem;
+    }
+    .btn{
+      font-size: .5rem;
+    }
+    .table-data td{
+    padding-left: .3rem;
+    padding-right: .3rem;
+  }
   }
 </style>

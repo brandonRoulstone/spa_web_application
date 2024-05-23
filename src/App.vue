@@ -7,7 +7,7 @@ import { default } from './components/NavbarComp.vue';
 
   </header>
 
-  <main class="pt-5">
+  <main class="pt-4">
 
     <router-view />
 
@@ -27,10 +27,19 @@ export default {
   margin: 0%;
   padding: 0%;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
-::-webkit-scrollbar{
+/* ::-webkit-scrollbar{
   display: none;
+} */
+
+.pt-2{
+  padding-top: 2rem;
+}
+
+.pt-4{
+  padding-top: 4.02rem;
 }
 
 .pt-5{
@@ -41,6 +50,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-align: center;
-  background-color: rgb(239, 237, 237);
+  background-color: white;
 }
 </style>
