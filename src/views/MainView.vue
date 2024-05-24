@@ -1,7 +1,7 @@
 <template>
   <section class="home" id="home">
     <!-- table data  -->
-    <LandingPage :currency="latestData()"/>
+    <LandingPage :currency="latestData"/>
 
   </section>
   
@@ -34,7 +34,8 @@ export default {
     ContactView
   },
 
-  methods: {
+  // everytime the data changes computed function will run
+  computed: {
     latestData() {
       let data = [...this.$store.state.tableData];
       data.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
@@ -43,7 +44,7 @@ export default {
   },
 
   mounted(){
-    this.latestData()
+    this.latestData
   }
 
 }

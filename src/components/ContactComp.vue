@@ -63,7 +63,7 @@
                     <textarea type="text" id="messageInput"></textarea>
                 </div>
                 <div class="btn-center">
-                    <button class="btn">Submit</button>
+                    <button class="btn" type="submit">Submit</button>
                 </div>
                 <a href="#home" class="btnIcon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="12.5" height="12.5" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
@@ -194,7 +194,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: .5rem 1.5rem .5rem 1.5rem;
+        padding: 1.5rem 1.5rem 1.5rem 1.5rem;
         width: 50%;
         text-decoration: none;
         font-weight: bold;
@@ -202,6 +202,7 @@ export default {
         background: rgb(63, 85, 255);
         border-radius: 10px;
         border: none;
+        cursor: pointer;
     }
 
     .btnIcon{

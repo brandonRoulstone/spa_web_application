@@ -52,13 +52,18 @@ export default {
     // prop so i am able to loop inside my function on this prop
     currency: Function
   },
-  
-  methods: {
+
+  computed: {
+
     // kept naming conventions consistent
     // since we fetching it from the store
     sharenetData(){
       this.$store.dispatch('sharenetData')
-    },
+    }
+    
+  },
+  
+  methods: {
 
     sortByPrice(){
       // grabbing my data from the state so I can perform a sorting method
@@ -103,7 +108,7 @@ export default {
   },
 
   mounted(){
-    this.sharenetData()
+    this.sharenetData
   }
 
 }
@@ -117,7 +122,6 @@ export default {
     flex-flow: column;
     min-height: 100vh;
     background-color: rgb(255, 255, 255);
-    padding-bottom: 2rem;
   }
 
   .table-settings{

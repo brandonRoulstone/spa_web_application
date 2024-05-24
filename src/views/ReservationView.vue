@@ -1,6 +1,6 @@
 <template lang="">
   <div>
-    <ReservationComp />
+    <ReservationComp :renderData="this.$store.state.tickets" />
   </div>
 </template>
 <script>
